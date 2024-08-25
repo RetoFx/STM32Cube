@@ -238,19 +238,22 @@ typedef struct
   */
 typedef enum
 {
-  HAL_RTC_ALARM_A_EVENT_CB_ID            =  0U,    /*!< RTC Alarm A Event Callback ID      */
-  HAL_RTC_ALARM_B_EVENT_CB_ID            =  1U,    /*!< RTC Alarm B Event Callback ID      */
-  HAL_RTC_TIMESTAMP_EVENT_CB_ID          =  2U,    /*!< RTC TimeStamp Event Callback ID    */
-  HAL_RTC_WAKEUPTIMER_EVENT_CB_ID        =  3U,    /*!< RTC WakeUp Timer Event Callback ID */
+  HAL_RTC_ALARM_A_EVENT_CB_ID            =  0U,    /*!< RTC Alarm A Event Callback ID                       */
+  HAL_RTC_ALARM_B_EVENT_CB_ID            =  1U,    /*!< RTC Alarm B Event Callback ID                       */
+  HAL_RTC_TIMESTAMP_EVENT_CB_ID          =  2U,    /*!< RTC TimeStamp Event Callback ID                     */
+  HAL_RTC_WAKEUPTIMER_EVENT_CB_ID        =  3U,    /*!< RTC WakeUp Timer Event Callback ID                  */
+#if defined (STM32L4P5xx) || defined (STM32L4Q5xx)
+  HAL_RTC_SSRU_EVENT_CB_ID               =  4u     /*!< RTC Subseconds Register Underflow Event Callback ID */
+#endif
 #if defined(RTC_TAMPER1_SUPPORT)
-  HAL_RTC_TAMPER1_EVENT_CB_ID            =  4U,    /*!< RTC Tamper 1 Callback ID           */
+  HAL_RTC_TAMPER1_EVENT_CB_ID            =  5U,    /*!< RTC Tamper 1 Callback ID                            */
 #endif /* RTC_TAMPER1_SUPPORT */
-  HAL_RTC_TAMPER2_EVENT_CB_ID            =  5U,    /*!< RTC Tamper 2 Callback ID           */
+  HAL_RTC_TAMPER2_EVENT_CB_ID            =  6U,    /*!< RTC Tamper 2 Callback ID                            */
 #if defined(RTC_TAMPER3_SUPPORT)
-  HAL_RTC_TAMPER3_EVENT_CB_ID            =  6U,    /*!< RTC Tamper 3 Callback ID           */
+  HAL_RTC_TAMPER3_EVENT_CB_ID            =  7U,    /*!< RTC Tamper 3 Callback ID                            */
 #endif /* RTC_TAMPER3_SUPPORT */
-  HAL_RTC_MSPINIT_CB_ID                  =  7U,    /*!< RTC Msp Init callback ID           */
-  HAL_RTC_MSPDEINIT_CB_ID                =  8U     /*!< RTC Msp DeInit callback ID         */
+  HAL_RTC_MSPINIT_CB_ID                  =  8U,    /*!< RTC Msp Init callback ID                            */
+  HAL_RTC_MSPDEINIT_CB_ID                =  9U     /*!< RTC Msp DeInit callback ID                          */
 } HAL_RTC_CallbackIDTypeDef;
 
 /**

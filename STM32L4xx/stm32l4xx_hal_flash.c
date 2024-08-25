@@ -723,7 +723,7 @@ static void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress)
 {
   uint32_t primask_bit;
   uint8_t row_index = (2*FLASH_NB_DOUBLE_WORDS_IN_ROW);
-  __IO uint32_t * dest_addr = (__IO uint32_t *)Address;
+  __IO uint32_t *dest_addr = (__IO uint32_t *)Address;
   __IO uint32_t const * src_addr = (__IO uint32_t *)DataAddress;
 
   /* Check the parameters */

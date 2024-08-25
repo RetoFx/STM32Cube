@@ -157,7 +157,7 @@ extern "C" {
 #if !defined  (LSI_VALUE)
 /*!< Value of the Internal Low Speed oscillator in Hz
 The real value may vary depending on the variations in voltage and temperature.*/
-#define LSI_VALUE  (32000UL)      /*!< LSI Typical Value in Hz*/
+#define LSI_VALUE  32000UL      /*!< LSI Typical Value in Hz*/
 #endif /* LSI_VALUE */
 
 #if !defined  (LSI_VALUE_MIN)
@@ -172,7 +172,7 @@ The real value may vary depending on the variations in voltage and temperature.*
   *        This value is used by the UART, RTC HAL module to compute the system frequency
   */
 #if !defined  (LSE_VALUE)
-#define LSE_VALUE    (32768UL) /*!< Value of the External oscillator in Hz*/
+#define LSE_VALUE    32768UL /*!< Value of the External oscillator in Hz*/
 #endif /* LSE_VALUE */
 
 #if !defined  (LSE_STARTUP_TIMEOUT)

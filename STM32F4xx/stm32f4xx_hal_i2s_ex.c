@@ -205,8 +205,8 @@ static HAL_StatusTypeDef I2SEx_FullDuplexWaitFlagStateUntilTimeout(I2S_HandleTyp
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_I2SEx_TransmitReceive(I2S_HandleTypeDef * const hi2s,
-                                            uint16_t const * const pTxData,
-                                            uint16_t * const pRxData,
+                                            uint16_t const * pTxData,
+                                            uint16_t * pRxData,
                                             uint16_t Size,
                                             uint32_t Timeout)
 {

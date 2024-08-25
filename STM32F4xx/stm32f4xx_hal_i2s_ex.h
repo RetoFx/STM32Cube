@@ -135,7 +135,7 @@ extern "C" {
 
 /* Extended features functions *************************************************/
 /* Blocking mode: Polling */
-HAL_StatusTypeDef HAL_I2SEx_TransmitReceive(I2S_HandleTypeDef * const hi2s, uint16_t const * const pTxData, uint16_t * const pRxData,
+HAL_StatusTypeDef HAL_I2SEx_TransmitReceive(I2S_HandleTypeDef * const hi2s, uint16_t const * pTxData, uint16_t * pRxData,
                                             uint16_t Size, uint32_t Timeout);
 /* Non-Blocking mode: Interrupt */
 HAL_StatusTypeDef HAL_I2SEx_TransmitReceive_IT(I2S_HandleTypeDef * const hi2s, uint16_t const * const pTxData, uint16_t * const pRxData,

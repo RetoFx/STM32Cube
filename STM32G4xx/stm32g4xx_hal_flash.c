@@ -750,7 +750,7 @@ static void FLASH_Program_DoubleWord(uint32_t Address, uint64_t Data)
 static void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress)
 {
   uint8_t row_index = (2 * FLASH_NB_DOUBLE_WORDS_IN_ROW);
-  uint32_t * dest_addr = (uint32_t *)Address;
+  uint32_t *dest_addr = (uint32_t *)Address;
   uint32_t const * src_addr = (uint32_t *)DataAddress;
   uint32_t primask_bit;
 

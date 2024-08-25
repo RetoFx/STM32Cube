@@ -1784,21 +1784,18 @@ HAL_StatusTypeDef HAL_UARTEx_ReceiveToIdle_DMA(UART_HandleTypeDef * const huart,
     status =  UART_Start_Receive_DMA(huart, pData, Size);
 
     /* Check Rx process has been successfully started */
-    if (status == HAL_OK)
+    if (huart->ReceptionType == HAL_UART_RECEPTION_TOIDLE)
     {
-      if (huart->ReceptionType == HAL_UART_RECEPTION_TOIDLE)
-      {
-        __HAL_UART_CLEAR_IDLEFLAG(huart);
-        ATOMIC_SET_BIT(huart->Instance->CR1, USART_CR1_IDLEIE);
-      }
-      else
-      {
-        /* In case of errors already pending when reception is started,
-           Interrupts may have already been raised and lead to reception abortion.
-           (Overrun error for instance).
-           In such case Reception Type has been reset to HAL_UART_RECEPTION_STANDARD. */
-        status = HAL_ERROR;
-      }
+      __HAL_UART_CLEAR_IDLEFLAG(huart);
+      ATOMIC_SET_BIT(huart->Instance->CR1, USART_CR1_IDLEIE);
+    }
+    else
+    {
+      /* In case of errors already pending when reception is started,
+         Interrupts may have already been raised and lead to reception abortion.
+         (Overrun error for instance).
+         In such case Reception Type has been reset to HAL_UART_RECEPTION_STANDARD. */
+      status = HAL_ERROR;
     }
 
     return status;
@@ -3355,7 +3352,6 @@ static void UART_DMAAbortOnError(DMA_HandleTypeDef * const hdma)
 {
   UART_HandleTypeDef * const huart = (UART_HandleTypeDef *)((DMA_HandleTypeDef *)hdma)->Parent;
   huart->RxXferCount = 0x00U;
-  huart->TxXferCount = 0x00U;
 
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 1U)
   /*Call registered error callback*/
