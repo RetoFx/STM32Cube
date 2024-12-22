@@ -246,7 +246,6 @@ static void UART_RxISR_16BIT_FIFOEN(UART_HandleTypeDef * const huart);
 /** @addtogroup UART_Private_variables
   * @{
   */
-static
 uint16_t const UARTPrescTable[12U] = {1U, 2U, 4U, 6U, 8U, 10U, 12U, 16U, 32U, 64U, 128U, 256U};
 /**
   * @}

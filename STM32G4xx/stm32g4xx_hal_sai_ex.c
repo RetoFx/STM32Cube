@@ -22,6 +22,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -131,3 +132,5 @@ HAL_StatusTypeDef HAL_SAIEx_ConfigPdmMicDelay(SAI_HandleTypeDef const * const hs
 /**
   * @}
   */
+
+/*lint -restore*/

@@ -152,6 +152,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -1097,3 +1098,5 @@ uint32_t HAL_COMP_GetError(COMP_HandleTypeDef const * const hcomp)
 /**
   * @}
   */
+
+/*lint -restore*/

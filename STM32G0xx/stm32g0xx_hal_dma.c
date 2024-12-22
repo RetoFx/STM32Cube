@@ -88,6 +88,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -196,7 +197,7 @@ HAL_StatusTypeDef HAL_DMA_Init(DMA_HandleTypeDef * const hdma)
                                   DMA_CCR_DIR   | DMA_CCR_MEM2MEM));
 
   /* Set the DMA Channel configuration */
-  SET_BIT(hdma->Instance->CCR, (hdma->Init.Direction           |                             
+  SET_BIT(hdma->Instance->CCR, (hdma->Init.Direction           |
                                 hdma->Init.PeriphInc           | hdma->Init.MemInc           |
                                 hdma->Init.PeriphDataAlignment | hdma->Init.MemDataAlignment |
                                 hdma->Init.Mode                | hdma->Init.Priority));
@@ -1191,3 +1192,4 @@ static void DMA_CalcDMAMUXRequestGenBaseAndMask(DMA_HandleTypeDef * const hdma)
   * @}
   */
 
+/*lint -restore*/

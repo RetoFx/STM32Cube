@@ -40,6 +40,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_LL_USB_DRIVER
   * @{
@@ -908,3 +909,5 @@ void USB_ReadPMA(USB_TypeDef const * const USBx, uint8_t * const pbUsrBuf, uint1
 /**
   * @}
   */
+
+/*lint -restore*/

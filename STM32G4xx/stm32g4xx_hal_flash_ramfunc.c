@@ -47,6 +47,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -248,6 +249,4 @@ __RAM_FUNC HAL_StatusTypeDef HAL_FLASHEx_OB_DBankConfig(uint32_t DBankConfig)
   * @}
   */
 
-
-
-
+/*lint -restore*/

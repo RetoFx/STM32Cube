@@ -166,6 +166,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #if defined(FDCAN1)
 
@@ -3544,3 +3545,5 @@ static void FDCAN_CopyMessageToRAM(FDCAN_HandleTypeDef const * const hfdcan, FDC
   */
 
 #endif /* FDCAN1 */
+
+/*lint -restore*/

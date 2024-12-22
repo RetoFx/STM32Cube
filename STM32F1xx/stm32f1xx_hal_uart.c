@@ -3383,7 +3383,6 @@ static void UART_DMAAbortOnError(DMA_HandleTypeDef * const hdma)
 {
   UART_HandleTypeDef * const huart = (UART_HandleTypeDef *)((DMA_HandleTypeDef *)hdma)->Parent;
   huart->RxXferCount = 0x00U;
-  huart->TxXferCount = 0x00U;
 
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 1U)
   /*Call registered error callback*/

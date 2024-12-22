@@ -212,6 +212,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -554,17 +555,17 @@ HAL_StatusTypeDef HAL_SAI_Init(SAI_HandleTypeDef * const hsai)
 
   /* SAI Block Configuration -------------------------------------------------*/
   /* SAI CR1 Configuration */
-  hsai->Instance->CR1 &= ~(SAI_xCR1_MODE | SAI_xCR1_PRTCFG |  SAI_xCR1_DS |    
+  hsai->Instance->CR1 &= ~(SAI_xCR1_MODE | SAI_xCR1_PRTCFG |  SAI_xCR1_DS |
                            SAI_xCR1_LSBFIRST | SAI_xCR1_CKSTR | SAI_xCR1_SYNCEN |
                            SAI_xCR1_MONO | SAI_xCR1_OUTDRIV  | SAI_xCR1_DMAEN |
-                           SAI_xCR1_NODIV | SAI_xCR1_MCKDIV | SAI_xCR1_OSR |   
+                           SAI_xCR1_NODIV | SAI_xCR1_MCKDIV | SAI_xCR1_OSR |
                            SAI_xCR1_MCKEN);
 
-  hsai->Instance->CR1 |= (hsai->Init.AudioMode | hsai->Init.Protocol |         
-                          hsai->Init.DataSize | hsai->Init.FirstBit  |         
-                          ckstr_bits | syncen_bits |                           
-                          hsai->Init.MonoStereoMode | hsai->Init.OutputDrive | 
-                          hsai->Init.NoDivider | (hsai->Init.Mckdiv << 20U) |   
+  hsai->Instance->CR1 |= (hsai->Init.AudioMode | hsai->Init.Protocol |
+                          hsai->Init.DataSize | hsai->Init.FirstBit  |
+                          ckstr_bits | syncen_bits |
+                          hsai->Init.MonoStereoMode | hsai->Init.OutputDrive |
+                          hsai->Init.NoDivider | (hsai->Init.Mckdiv << 20U) |
                           hsai->Init.MckOverSampling | hsai->Init.MckOutput);
 
   /* SAI CR2 Configuration */
@@ -2742,3 +2743,5 @@ static void SAI_DMAAbort(DMA_HandleTypeDef * const hdma)
 /**
   * @}
   */
+
+/*lint -restore*/

@@ -321,6 +321,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -7490,3 +7491,5 @@ static void I2C_ConvertOtherXferOptions(I2C_HandleTypeDef * const hi2c)
 /**
   * @}
   */
+
+/*lint -restore*/

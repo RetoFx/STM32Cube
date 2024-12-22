@@ -192,6 +192,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32U0xx_HAL_Driver
   * @{
@@ -1119,3 +1120,4 @@ static uint32_t TSC_extract_groups(uint32_t iomask)
   * @}
   */
 
+/*lint -restore*/

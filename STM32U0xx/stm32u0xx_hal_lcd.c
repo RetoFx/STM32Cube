@@ -81,6 +81,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 
 /** @addtogroup STM32U0xx_HAL_Driver
@@ -612,3 +613,4 @@ HAL_StatusTypeDef LCD_WaitForSynchro(LCD_HandleTypeDef * const hlcd)
 /**
   * @}
   */
+/*lint -restore*/

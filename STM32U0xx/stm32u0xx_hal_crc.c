@@ -44,6 +44,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32U0xx_HAL_Driver
   * @{
@@ -514,3 +515,4 @@ static uint32_t CRC_Handle_16(CRC_HandleTypeDef * const hcrc, uint16_t const pBu
 /**
   * @}
   */
+/*lint -restore*/

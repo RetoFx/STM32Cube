@@ -40,6 +40,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -317,4 +318,4 @@ void HAL_DMAEx_MUX_IRQHandler(DMA_HandleTypeDef * const hdma)
   * @}
   */
 
-
+/*lint -restore*/

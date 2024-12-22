@@ -101,6 +101,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -280,3 +281,5 @@ HAL_StatusTypeDef HAL_IWDG_Refresh(IWDG_HandleTypeDef * const hiwdg)
 /**
   * @}
   */
+
+/*lint -restore*/

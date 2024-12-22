@@ -187,6 +187,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -2902,4 +2903,4 @@ static void IRDA_Receive_IT(IRDA_HandleTypeDef * const hirda)
   * @}
   */
 
-
+/*lint -restore*/

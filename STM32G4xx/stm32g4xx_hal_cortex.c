@@ -102,6 +102,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -539,3 +540,4 @@ void HAL_MPU_ConfigRegion(MPU_Region_InitTypeDef const * const MPU_Init)
   * @}
   */
 
+/*lint -restore*/

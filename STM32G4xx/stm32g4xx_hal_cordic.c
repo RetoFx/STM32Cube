@@ -137,6 +137,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #if defined(CORDIC)
 #ifdef HAL_CORDIC_MODULE_ENABLED
@@ -572,10 +573,10 @@ HAL_StatusTypeDef HAL_CORDIC_Configure(CORDIC_HandleTypeDef * const hcordic, COR
   if (hcordic->State == HAL_CORDIC_STATE_READY)
   {
     /* Apply all configuration parameters in CORDIC control register */
-    MODIFY_REG(hcordic->Instance->CSR,                                                       
-               (CORDIC_CSR_FUNC | CORDIC_CSR_PRECISION | CORDIC_CSR_SCALE |                  
+    MODIFY_REG(hcordic->Instance->CSR,
+               (CORDIC_CSR_FUNC | CORDIC_CSR_PRECISION | CORDIC_CSR_SCALE |
                 CORDIC_CSR_NARGS | CORDIC_CSR_NRES | CORDIC_CSR_ARGSIZE | CORDIC_CSR_RESSIZE),
-               (sConfig->Function | sConfig->Precision | sConfig->Scale |                    
+               (sConfig->Function | sConfig->Precision | sConfig->Scale |
                 sConfig->NbWrite | sConfig->NbRead | sConfig->InSize | sConfig->OutSize));
   }
   else
@@ -1347,3 +1348,5 @@ static void CORDIC_DMAError(DMA_HandleTypeDef * const hdma)
 
 #endif /* HAL_CORDIC_MODULE_ENABLED */
 #endif /* CORDIC */
+
+/*lint -restore*/

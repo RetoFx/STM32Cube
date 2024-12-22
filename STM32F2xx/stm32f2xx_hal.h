@@ -27,7 +27,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f2xx_hal_conf.h"
+/*lint -save*/
+/*lint -e537*/	//	repeated include file
 #include "stm32f2xx_hal_def.h"
+/*lint -restore */
 
 /** @addtogroup STM32F2xx_HAL_Driver
   * @{

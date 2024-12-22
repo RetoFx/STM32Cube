@@ -104,6 +104,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -530,3 +531,4 @@ HAL_GPIO_WEAK_CALLBACK(void, HAL_GPIO_EXTI_Callback)(uint16_t GPIO_Pin)
   * @}
   */
 
+/*lint -restore*/

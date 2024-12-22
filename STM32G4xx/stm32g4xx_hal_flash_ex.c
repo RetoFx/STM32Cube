@@ -69,6 +69,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -1429,3 +1430,4 @@ static void FLASH_OB_GetPCROP(uint32_t * const PCROPConfig, uint32_t * const PCR
   * @}
   */
 
+/*lint -restore*/

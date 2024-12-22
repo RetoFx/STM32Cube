@@ -185,6 +185,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #ifdef HAL_I2S_MODULE_ENABLED
 
@@ -1855,3 +1856,4 @@ static HAL_StatusTypeDef I2S_WaitFlagStateUntilTimeout(I2S_HandleTypeDef * const
 
 #endif /* HAL_I2S_MODULE_ENABLED */
 
+/*lint -restore*/

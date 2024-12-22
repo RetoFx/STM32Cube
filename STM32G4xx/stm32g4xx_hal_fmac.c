@@ -210,6 +210,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #if defined(FMAC)
 #ifdef HAL_FMAC_MODULE_ENABLED
@@ -2537,3 +2538,5 @@ static void FMAC_DMAError(DMA_HandleTypeDef * const hdma)
 
 #endif /* HAL_FMAC_MODULE_ENABLED */
 #endif /* FMAC */
+
+/*lint -restore*/

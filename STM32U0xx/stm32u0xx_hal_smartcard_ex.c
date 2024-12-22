@@ -42,6 +42,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32U0xx_HAL_Driver
   * @{
@@ -493,3 +494,4 @@ static void SMARTCARDEx_SetNbDataToProcess(SMARTCARD_HandleTypeDef * const hsmar
   * @}
   */
 
+/*lint -restore*/

@@ -52,6 +52,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -2885,3 +2886,5 @@ static HAL_StatusTypeDef  HAL_HCD_PMAFree(HCD_HandleTypeDef * const hhcd, uint32
 /**
   * @}
   */
+
+/*lint -restore*/

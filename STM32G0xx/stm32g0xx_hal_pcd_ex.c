@@ -22,6 +22,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -331,3 +332,5 @@ HAL_PCDEX_WEAK_CALLBACK(void, HAL_PCDEx_BCD_Callback)(PCD_HandleTypeDef * const 
 /**
   * @}
   */
+
+/*lint -restore*/

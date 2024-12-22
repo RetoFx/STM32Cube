@@ -126,6 +126,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32U0xx_HAL_Driver
   * @{
@@ -418,3 +419,4 @@ HAL_WWDG_WEAK_CALLBACK(void, HAL_WWDG_EarlyWakeupCallback)(WWDG_HandleTypeDef * 
   * @}
   */
 
+/*lint -restore*/

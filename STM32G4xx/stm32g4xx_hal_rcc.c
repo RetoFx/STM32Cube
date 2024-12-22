@@ -50,6 +50,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -1398,3 +1399,4 @@ static uint32_t RCC_GetSysClockFreqFromPLLSource(void)
   * @}
   */
 
+/*lint -restore*/

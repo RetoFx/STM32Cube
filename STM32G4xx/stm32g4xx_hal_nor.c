@@ -105,6 +105,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #if  defined(FMC_BANK1)
 
@@ -1639,3 +1640,5 @@ HAL_NOR_StatusTypeDef HAL_NOR_GetStatus(NOR_HandleTypeDef const * const hnor, ui
   */
 
 #endif /* FMC_BANK1 */
+
+/*lint -restore*/

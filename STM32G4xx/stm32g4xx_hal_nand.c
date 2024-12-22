@@ -108,6 +108,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #if defined(FMC_BANK3)
 
@@ -2229,3 +2230,5 @@ uint32_t HAL_NAND_Read_Status(NAND_HandleTypeDef const * const hnand)
   */
 
 #endif /* FMC_BANK3 */
+
+/*lint -restore*/

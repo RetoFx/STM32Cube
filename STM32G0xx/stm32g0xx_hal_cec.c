@@ -111,6 +111,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -995,3 +996,5 @@ uint32_t HAL_CEC_GetError(CEC_HandleTypeDef const * const hcec)
 /**
   * @}
   */
+
+/*lint -restore*/

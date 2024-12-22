@@ -160,6 +160,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32U0xx_HAL_Driver
   * @{
@@ -3883,7 +3884,6 @@ static void UART_DMAAbortOnError(DMA_HandleTypeDef * const hdma)
 {
   UART_HandleTypeDef * const huart = (UART_HandleTypeDef *)(hdma->Parent);
   huart->RxXferCount = 0U;
-  huart->TxXferCount = 0U;
 
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 1U)
   /*Call registered error callback*/
@@ -4761,3 +4761,4 @@ static void UART_RxISR_16BIT_FIFOEN(UART_HandleTypeDef * const huart)
   * @}
   */
 
+/*lint -restore*/

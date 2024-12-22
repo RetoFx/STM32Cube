@@ -23,6 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -650,3 +651,4 @@ HAL_PWR_WEAK_CALLBACK(void, HAL_PWR_PVDCallback)(void)
   * @}
   */
 
+/*lint -restore*/

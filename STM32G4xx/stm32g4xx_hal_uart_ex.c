@@ -42,6 +42,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -1040,3 +1041,4 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef * const huart)
   * @}
   */
 
+/*lint -restore*/

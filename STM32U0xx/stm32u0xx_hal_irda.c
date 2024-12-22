@@ -187,6 +187,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32U0xx_HAL_Driver
   * @{
@@ -3013,3 +3014,4 @@ static void IRDA_Receive_IT(IRDA_HandleTypeDef * const hirda)
   */
 
 
+/*lint -restore*/

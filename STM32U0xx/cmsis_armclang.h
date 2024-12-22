@@ -696,7 +696,7 @@ __STATIC_FORCEINLINE uint32_t __get_FPSCR(void)
   \details Assigns the given value to the Floating Point Status/Control register.
   \param [in]    fpscr  Floating Point Status/Control value to set
  */
-__STATIC_FORCEINLINE void __set_FPSCR(uint32_t fpscr)
+__STATIC_FORCEINLINE void __set_FPSCR(uint32_t const fpscr)
 {
 #if (defined(__ARM_FP) && (__ARM_FP >= 1U))
   __builtin_arm_set_fpscr(fpscr);

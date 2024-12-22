@@ -72,6 +72,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32u0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32U0xx_HAL_Driver
   * @{
@@ -832,3 +833,4 @@ void HAL_FLASHEx_GetHDPExtensionConfig(FLASH_HDPExtensionTypeDef * const pHDPExt
 /**
   * @}
   */
+/*lint -restore*/

@@ -27,7 +27,10 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal_conf.h"
+/*lint -save*/
+/*lint -e537*/	//	repeated include file
 #include "stm32g0xx_hal_def.h"
+/*lint -restore */
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{

@@ -138,6 +138,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -3840,3 +3841,4 @@ static void USART_RxISR_16BIT_FIFOEN(USART_HandleTypeDef * const husart)
   * @}
   */
 
+/*lint -restore*/

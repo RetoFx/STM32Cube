@@ -23,6 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -1676,3 +1677,4 @@ HAL_RCCEX_WEAK_CALLBACK(void, HAL_RCCEx_CRS_ErrorCallback)(uint32_t Error)
   * @}
   */
 
+/*lint -restore*/

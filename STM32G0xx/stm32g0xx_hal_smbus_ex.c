@@ -42,6 +42,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -248,3 +249,5 @@ void HAL_SMBUSEx_DisableFastModePlus(uint32_t ConfigFastModePlus)
 /**
   * @}
   */
+
+/*lint -restore*/

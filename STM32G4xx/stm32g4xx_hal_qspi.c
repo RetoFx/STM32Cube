@@ -209,6 +209,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #if defined(QUADSPI)
 
@@ -2806,3 +2807,5 @@ static void QSPI_Config(QSPI_HandleTypeDef * const hqspi, QSPI_CommandTypeDef co
   */
 
 #endif /* defined(QUADSPI) */
+
+/*lint -restore*/

@@ -185,6 +185,7 @@ all interrupt callbacks are set to the corresponding weak functions:
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -7929,3 +7930,5 @@ void TIM_ResetCallback(TIM_HandleTypeDef * const htim)
 /**
   * @}
   */
+
+/*lint -restore*/

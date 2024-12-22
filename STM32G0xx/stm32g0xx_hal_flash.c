@@ -84,6 +84,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -728,3 +729,4 @@ static __RAM_FUNC void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress
   * @}
   */
 
+/*lint -restore*/

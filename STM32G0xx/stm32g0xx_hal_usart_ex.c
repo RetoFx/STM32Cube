@@ -41,6 +41,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -539,3 +540,4 @@ static void USARTEx_SetNbDataToProcess(USART_HandleTypeDef * const husart)
   * @}
   */
 
+/*lint -restore*/

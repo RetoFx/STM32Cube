@@ -114,6 +114,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 #if defined(FMC_BANK1)
 
@@ -1115,3 +1116,5 @@ static void SRAM_DMAError(DMA_HandleTypeDef * const hdma)
   */
 
 #endif /* FMC_BANK1 */
+
+/*lint -restore*/

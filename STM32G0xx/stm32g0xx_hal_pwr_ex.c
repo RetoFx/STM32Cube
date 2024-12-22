@@ -23,6 +23,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G0xx_HAL_Driver
   * @{
@@ -1014,3 +1015,5 @@ __weak void HAL_PWREx_PVD_Falling_Callback(void)
 /**
   * @}
   */
+
+/*lint -restore*/

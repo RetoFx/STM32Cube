@@ -873,3 +873,5 @@ void SystemInit_ExtMemCtl(void)
 /**
   * @}
   */
+
+/*lint -restore*/

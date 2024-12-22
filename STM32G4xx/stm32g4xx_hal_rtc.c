@@ -235,6 +235,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g4xx_hal.h"
+/*lint -save -w1*/
 
 /** @addtogroup STM32G4xx_HAL_Driver
   * @{
@@ -2036,3 +2037,5 @@ uint32_t HAL_RTC_DST_ReadStoreOperation(RTC_HandleTypeDef const * const hrtc)
 /**
   * @}
   */
+
+/*lint -restore*/
