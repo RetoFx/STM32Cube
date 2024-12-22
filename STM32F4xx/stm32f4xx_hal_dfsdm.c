@@ -2452,7 +2452,7 @@ HAL_StatusTypeDef HAL_DFSDM_FilterRegularStop_IT(DFSDM_Filter_HandleTypeDef * co
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_DFSDM_FilterRegularStart_DMA(DFSDM_Filter_HandleTypeDef * const hdfsdm_filter,
-                                                   int32_t                    * const pData,
+                                                   int32_t *                    const pData,
                                                    uint32_t                    Length)
 {
   HAL_StatusTypeDef status = HAL_OK;
@@ -2529,7 +2529,7 @@ HAL_StatusTypeDef HAL_DFSDM_FilterRegularStart_DMA(DFSDM_Filter_HandleTypeDef * 
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_DFSDM_FilterRegularMsbStart_DMA(DFSDM_Filter_HandleTypeDef * const hdfsdm_filter,
-                                                      int16_t                    * const pData,
+                                                      int16_t *                    const pData,
                                                       uint32_t                    Length)
 {
   HAL_StatusTypeDef status = HAL_OK;
@@ -2639,7 +2639,7 @@ HAL_StatusTypeDef HAL_DFSDM_FilterRegularStop_DMA(DFSDM_Filter_HandleTypeDef * c
   * @retval Regular conversion value
   */
 int32_t HAL_DFSDM_FilterGetRegularValue(DFSDM_Filter_HandleTypeDef const * const hdfsdm_filter,
-                                        uint32_t                   * const Channel)
+                                        uint32_t *                   const Channel)
 {
   uint32_t reg = 0U;
   int32_t  value = 0;
@@ -2870,7 +2870,7 @@ HAL_StatusTypeDef HAL_DFSDM_FilterInjectedStop_IT(DFSDM_Filter_HandleTypeDef * c
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_DFSDM_FilterInjectedStart_DMA(DFSDM_Filter_HandleTypeDef * const hdfsdm_filter,
-                                                    int32_t                    * const pData,
+                                                    int32_t *                    const pData,
                                                     uint32_t                    Length)
 {
   HAL_StatusTypeDef status = HAL_OK;
@@ -2945,7 +2945,7 @@ HAL_StatusTypeDef HAL_DFSDM_FilterInjectedStart_DMA(DFSDM_Filter_HandleTypeDef *
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_DFSDM_FilterInjectedMsbStart_DMA(DFSDM_Filter_HandleTypeDef * const hdfsdm_filter,
-                                                       int16_t                    * const pData,
+                                                       int16_t *                    const pData,
                                                        uint32_t                    Length)
 {
   HAL_StatusTypeDef status = HAL_OK;
@@ -3053,7 +3053,7 @@ HAL_StatusTypeDef HAL_DFSDM_FilterInjectedStop_DMA(DFSDM_Filter_HandleTypeDef * 
   * @retval Injected conversion value
   */
 int32_t HAL_DFSDM_FilterGetInjectedValue(DFSDM_Filter_HandleTypeDef const * const hdfsdm_filter,
-                                         uint32_t                   * const Channel)
+                                         uint32_t *                   const Channel)
 {
   uint32_t reg = 0U;
   int32_t  value = 0;
@@ -3238,7 +3238,7 @@ HAL_StatusTypeDef HAL_DFSDM_FilterExdStop(DFSDM_Filter_HandleTypeDef * const hdf
   *         This value is between Min_Data = -8388608 and Max_Data = 8388607.
   */
 int32_t HAL_DFSDM_FilterGetExdMaxValue(DFSDM_Filter_HandleTypeDef const * const hdfsdm_filter,
-                                       uint32_t                   * const Channel)
+                                       uint32_t *                   const Channel)
 {
   uint32_t reg = 0U;
   int32_t  value = 0;
@@ -3266,7 +3266,7 @@ int32_t HAL_DFSDM_FilterGetExdMaxValue(DFSDM_Filter_HandleTypeDef const * const 
   *         This value is between Min_Data = -8388608 and Max_Data = 8388607.
   */
 int32_t HAL_DFSDM_FilterGetExdMinValue(DFSDM_Filter_HandleTypeDef const * const hdfsdm_filter,
-                                       uint32_t                   * const Channel)
+                                       uint32_t *                   const Channel)
 {
   uint32_t reg = 0U;
   int32_t  value = 0;

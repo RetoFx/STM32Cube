@@ -923,7 +923,7 @@ HAL_StatusTypeDef HAL_SMBUS_UnRegisterAddrCallback(SMBUS_HandleTypeDef * const h
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_SMBUS_Master_Transmit_IT(SMBUS_HandleTypeDef * const hsmbus, uint16_t DevAddress,
-                                                  uint8_t const * const pData, uint16_t Size, uint32_t XferOptions)
+                                               uint8_t const * const pData, uint16_t Size, uint32_t XferOptions)
 {
   uint32_t tmp;
   uint32_t sizetoxfer;

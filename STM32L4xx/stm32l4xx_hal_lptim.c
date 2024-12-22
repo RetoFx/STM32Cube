@@ -2236,7 +2236,7 @@ __weak void HAL_LPTIM_RepCounterWriteCallback(LPTIM_HandleTypeDef * const hlptim
   * @param pCallback pointer to the callback function
   * @retval status
   */
-HAL_StatusTypeDef HAL_LPTIM_RegisterCallback(LPTIM_HandleTypeDef        *hlptim,
+HAL_StatusTypeDef HAL_LPTIM_RegisterCallback(LPTIM_HandleTypeDef * const hlptim,
                                              HAL_LPTIM_CallbackIDTypeDef CallbackID,
                                              pLPTIM_CallbackTypeDef      pCallback)
 {
@@ -2349,7 +2349,7 @@ HAL_StatusTypeDef HAL_LPTIM_RegisterCallback(LPTIM_HandleTypeDef        *hlptim,
   *          @arg @ref HAL_LPTIM_REP_COUNTER_WRITE_CB_ID Repetition counter register write complete Callback ID (when available)
   * @retval status
   */
-HAL_StatusTypeDef HAL_LPTIM_UnRegisterCallback(LPTIM_HandleTypeDef        *hlptim,
+HAL_StatusTypeDef HAL_LPTIM_UnRegisterCallback(LPTIM_HandleTypeDef * const hlptim,
                                                HAL_LPTIM_CallbackIDTypeDef CallbackID)
 {
   HAL_StatusTypeDef status = HAL_OK;

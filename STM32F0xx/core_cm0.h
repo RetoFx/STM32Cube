@@ -518,7 +518,7 @@ typedef struct
 #define _VAL2FLD(field, value)    (((uint32_t)(value) << field ## _Pos) & field ## _Msk)
 
 /**
-  \brief     Mask and shift a register value to extract a bit filed value.
+  \brief     Mask and shift a register value to extract a bit field value.
   \param[in] field  Name of the register bit field.
   \param[in] value  Value of register. This parameter is interpreted as an uint32_t type.
   \return           Masked and shifted bit field value.
@@ -554,7 +554,7 @@ typedef struct
   \brief      Alias definitions present for backwards compatibility for deprecated symbols.
   @{
  */
- 
+
 #ifndef CMSIS_DISABLE_DEPRECATED
 
 #define SCB_AIRCR_ENDIANESS_Pos            SCB_AIRCR_ENDIANNESS_Pos

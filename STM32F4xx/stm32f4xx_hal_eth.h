@@ -1193,8 +1193,8 @@ TDES7 |                         Transmit Time Stamp High [31:0]                 
   */
 #define HAL_ETH_STATE_RESET       0x00000000UL    /*!< Peripheral not yet Initialized or disabled */
 #define HAL_ETH_STATE_READY       0x00000010UL    /*!< Peripheral Communication started           */
-#define HAL_ETH_STATE_BUSY        0x00000023UL    /*!< an internal process is ongoing             */
-#define HAL_ETH_STATE_STARTED     0x00000023UL    /*!< an internal process is started             */
+#define HAL_ETH_STATE_BUSY        0x00000020UL    /*!< an internal process is ongoing             */
+#define HAL_ETH_STATE_STARTED     0x00000040UL    /*!< an internal process is started             */
 #define HAL_ETH_STATE_ERROR       0x000000E0UL    /*!< Error State                                */
 /**
   * @}
@@ -1975,7 +1975,7 @@ HAL_StatusTypeDef HAL_ETH_SetSourceMACAddrMatch(ETH_HandleTypeDef const * const 
 
 /* MAC Power Down APIs    *****************************************************/
 void              HAL_ETH_EnterPowerDownMode(ETH_HandleTypeDef * const heth,
-                                             const ETH_PowerDownConfigTypeDef * const pPowerDownConfig);
+                                             ETH_PowerDownConfigTypeDef const * const pPowerDownConfig);
 void              HAL_ETH_ExitPowerDownMode(ETH_HandleTypeDef * const heth);
 HAL_StatusTypeDef HAL_ETH_SetWakeUpFilter(ETH_HandleTypeDef * const heth, uint32_t * pFilter, uint32_t Count);
 

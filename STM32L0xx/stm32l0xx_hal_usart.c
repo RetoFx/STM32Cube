@@ -141,7 +141,7 @@
   */
 
 /** @defgroup USART USART
-  * @brief HAL USART Synchronous module driver
+  * @brief HAL USART Synchronous SPI module driver
   * @{
   */
 
@@ -213,8 +213,8 @@ static void USART_RxISR_16BIT(USART_HandleTypeDef * const husart);
  ===============================================================================
     [..]
     This subsection provides a set of functions allowing to initialize the USART
-    in asynchronous and in synchronous modes.
-      (+) For the asynchronous mode only these parameters can be configured:
+    in synchronous SPI master mode.
+      (+) For the synchronous SPI mode only these parameters can be configured:
         (++) Baud Rate
         (++) Word Length
         (++) Stop Bit
@@ -226,7 +226,7 @@ static void USART_RxISR_16BIT(USART_HandleTypeDef * const husart);
         (++) Receiver/transmitter modes
 
     [..]
-    The HAL_USART_Init() function follows the USART  synchronous configuration
+    The HAL_USART_Init() function follows the USART synchronous SPI configuration
     procedure (details for the procedure are available in reference manual).
 
 @endverbatim
@@ -304,7 +304,7 @@ HAL_StatusTypeDef HAL_USART_Init(USART_HandleTypeDef * const husart)
     return HAL_ERROR;
   }
 
-  /* In Synchronous mode, the following bits must be kept cleared:
+  /* In Synchronous SPI mode, the following bits must be kept cleared:
   - LINEN bit in the USART_CR2 register
   - HDSEL, SCEN and IREN bits in the USART_CR3 register.
   */
@@ -627,10 +627,10 @@ HAL_StatusTypeDef HAL_USART_UnRegisterCallback(USART_HandleTypeDef * const husar
  ===============================================================================
                       ##### IO operation functions #####
  ===============================================================================
-    [..] This subsection provides a set of functions allowing to manage the USART synchronous
+    [..] This subsection provides a set of functions allowing to manage the USART synchronous SPI
     data transfers.
 
-    [..] The USART supports master mode only: it cannot receive or send data related to an input
+    [..] The USART Synchronous SPI supports master mode only: it cannot receive or send data related to an input
          clock (SCLK is always an output).
 
     [..]
@@ -2864,7 +2864,7 @@ static HAL_StatusTypeDef USART_SetConfig(USART_HandleTypeDef * const husart)
   /* Clear and configure the USART Clock, CPOL, CPHA, LBCL and STOP bits:
    * set CPOL bit according to husart->Init.CLKPolarity value
    * set CPHA bit according to husart->Init.CLKPhase value
-   * set LBCL bit according to husart->Init.CLKLastBit value (used in SPI master mode only)
+   * set LBCL bit according to husart->Init.CLKLastBit value (used in USART Synchronous SPI master mode only)
    * set STOP[13:12] bits according to husart->Init.StopBits value */
   tmpreg = (uint32_t)(USART_CLOCK_ENABLE);
   tmpreg |= (uint32_t)husart->Init.CLKLastBit;

@@ -348,7 +348,7 @@ void SystemCoreClockUpdate (void)
       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
 
 #if !defined(STM32F105xC) && !defined(STM32F107xC)
-      pllmull = ( pllmull >> 18U) + 2UL;
+      pllmull = ( pllmull >> RCC_CFGR_PLLMULL_Pos) + 2U;
 
       if (pllsource == 0x00U)
       {
@@ -374,7 +374,7 @@ void SystemCoreClockUpdate (void)
  #endif
       }
 #else
-      pllmull = pllmull >> 18U;
+      pllmull = pllmull >> RCC_CFGR_PLLMULL_Pos;
 
       if (pllmull != 0x0DU)
       {
@@ -406,8 +406,8 @@ void SystemCoreClockUpdate (void)
         {/* PLL2 clock selected as PREDIV1 clock entry */
 
           /* Get PREDIV2 division factor and PLL2 multiplication factor */
-          prediv2factor = ((RCC->CFGR2 & RCC_CFGR2_PREDIV2) >> 4U) + 1UL;
-          pll2mull = ((RCC->CFGR2 & RCC_CFGR2_PLL2MUL) >> 8U) + 2UL;
+          prediv2factor = ((RCC->CFGR2 & RCC_CFGR2_PREDIV2) >> RCC_CFGR2_PREDIV2_Pos) + 1UL;
+          pll2mull = ((RCC->CFGR2 & RCC_CFGR2_PLL2MUL) >> RCC_CFGR2_PLL2MUL_Pos) + 2UL;
           SystemCoreClock = (((HSE_VALUE / prediv2factor) * pll2mull) / prediv1factor) * pllmull;
         }
       }
@@ -421,7 +421,7 @@ void SystemCoreClockUpdate (void)
 
   /* Compute HCLK clock frequency ----------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }

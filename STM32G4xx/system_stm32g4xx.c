@@ -267,7 +267,7 @@ void SystemCoreClockUpdate(void)
          SYSCLK = PLL_VCO / PLLR
          */
       pllsource = (RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC);
-      pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> 4U) + 1U ;
+      pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_Pos) + 1U ;
       if (pllsource == 0x02UL) /* HSI used as PLL clock source */
       {
         pllvco = (HSI_VALUE / pllm);
@@ -276,8 +276,8 @@ void SystemCoreClockUpdate(void)
       {
         pllvco = (HSE_VALUE / pllm);
       }
-      pllvco = pllvco * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 8U);
-      pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 25U) + 1U) * 2U;
+      pllvco = pllvco * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos);
+      pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) + 1U) * 2U;
       SystemCoreClock = pllvco/pllr;
       break;
 
@@ -286,7 +286,7 @@ void SystemCoreClockUpdate(void)
   }
   /* Compute HCLK clock frequency --------------------------------------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }

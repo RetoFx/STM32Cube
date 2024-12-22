@@ -210,8 +210,8 @@ uint32_t SAI_GetInputClock(SAI_HandleTypeDef const * const hsai)
     /* PLL_VCO Input  = PLL_SOURCE/PLLM */
     /* PLL_VCO Output = PLL_VCO Input * PLLN */
     /* SAI_CLK(first level) = PLL_VCO Output/PLLR */
-    tmpreg = (RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 28U;
-    saiclocksource = (vcoinput * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6U)) / (tmpreg);
+    tmpreg = (RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos;
+    saiclocksource = (vcoinput * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos)) / (tmpreg);
 
     /* SAI_CLK_x = SAI_CLK(first level)/PLLDIVR */
     tmpreg = (((RCC->DCKCFGR & RCC_DCKCFGR_PLLDIVR) >> 8U) + 1U);
@@ -225,8 +225,8 @@ uint32_t SAI_GetInputClock(SAI_HandleTypeDef const * const hsai)
     /* PLLI2S_VCO Input  = PLL_SOURCE/PLLM */
     /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
     /* SAI_CLK(first level) = PLLI2S_VCO Output/PLLI2SR */
-    tmpreg = (RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U;
-    saiclocksource = (vcoinput * ((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U)) / (tmpreg);
+    tmpreg = (RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos;
+    saiclocksource = (vcoinput * ((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos)) / (tmpreg);
 
     /* SAI_CLK_x = SAI_CLK(first level)/PLLI2SDIVR */
     tmpreg = ((RCC->DCKCFGR & RCC_DCKCFGR_PLLI2SDIVR) + 1U);
@@ -257,11 +257,11 @@ uint32_t SAI_GetInputClock(SAI_HandleTypeDef const * const hsai)
     /* PLLSAI_VCO Input  = PLL_SOURCE/PLLM */
     /* PLLSAI_VCO Output = PLLSAI_VCO Input * PLLSAIN */
     /* SAI_CLK(first level) = PLLSAI_VCO Output/PLLSAIQ */
-    tmpreg = (RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIQ) >> 24U;
-    saiclocksource = (vcoinput * ((RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIN) >> 6U)) / (tmpreg);
+    tmpreg = (RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIQ) >> RCC_PLLSAICFGR_PLLSAIQ_Pos;
+    saiclocksource = (vcoinput * ((RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIN) >> RCC_PLLSAICFGR_PLLSAIN_Pos)) / (tmpreg);
 
     /* SAI_CLK_x = SAI_CLK(first level)/PLLSAIDIVQ */
-    tmpreg = (((RCC->DCKCFGR & RCC_DCKCFGR_PLLSAIDIVQ) >> 8U) + 1U);
+    tmpreg = (((RCC->DCKCFGR & RCC_DCKCFGR_PLLSAIDIVQ) >> RCC_DCKCFGR_PLLSAIDIVQ_Pos) + 1U);
     saiclocksource = saiclocksource / (tmpreg);
 
   }
@@ -271,8 +271,8 @@ uint32_t SAI_GetInputClock(SAI_HandleTypeDef const * const hsai)
     /* PLLI2S_VCO Input  = PLL_SOURCE/PLLM */
     /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
     /* SAI_CLK(first level) = PLLI2S_VCO Output/PLLI2SQ */
-    tmpreg = (RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SQ) >> 24U;
-    saiclocksource = (vcoinput * ((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U)) / (tmpreg);
+    tmpreg = (RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SQ) >> RCC_PLLI2SCFGR_PLLI2SQ_Pos;
+    saiclocksource = (vcoinput * ((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos)) / (tmpreg);
 
     /* SAI_CLK_x = SAI_CLK(first level)/PLLI2SDIVQ */
     tmpreg = ((RCC->DCKCFGR & RCC_DCKCFGR_PLLI2SDIVQ) + 1U);

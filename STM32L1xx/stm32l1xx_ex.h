@@ -267,7 +267,7 @@ typedef struct
   */
 
 #if !defined(FLASH_EEPROM_SIZE) && defined(FLASH_EEPROM_BASE) && defined(FLASH_EEPROM_END)
- #define FLASH_EEPROM_SIZE 			((FLASH_EEPROM_END + 1UL) - FLASH_EEPROM_BASE)
+ #define FLASH_EEPROM_SIZE			((FLASH_EEPROM_END + 1UL) - FLASH_EEPROM_BASE)
 #endif
 
 //for compatibility with STM32L0xxx

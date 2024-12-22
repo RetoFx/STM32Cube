@@ -59,7 +59,9 @@ HAL_StatusTypeDef HAL_OPAMPEx_SelfCalibrateAll(OPAMP_HandleTypeDef * const hopam
 #elif defined(STM32G491xx) || defined(STM32G4A1xx)
 HAL_StatusTypeDef HAL_OPAMPEx_SelfCalibrateAll(OPAMP_HandleTypeDef * const hopamp1, OPAMP_HandleTypeDef * const hopamp2,
                                                OPAMP_HandleTypeDef * const hopamp3, OPAMP_HandleTypeDef * const hopamp6);
-#endif
+#elif defined(STM32G411xB) || defined(STM32G411xC)
+HAL_StatusTypeDef HAL_OPAMPEx_SelfCalibrateAll(OPAMP_HandleTypeDef * const hopamp1);
+#endif /* STM32G473xx || STM32G474xx || STM32G483xx || STM32G484xx */
 
 /**
   * @}

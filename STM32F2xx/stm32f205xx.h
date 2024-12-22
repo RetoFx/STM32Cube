@@ -150,7 +150,7 @@ typedef enum
   OTG_HS_EP1_IN_IRQn          = 75,     /*!< USB OTG HS End Point 1 In global interrupt                        */
   OTG_HS_WKUP_IRQn            = 76,     /*!< USB OTG HS Wakeup through EXTI interrupt                          */
   OTG_HS_IRQn                 = 77,     /*!< USB OTG HS global interrupt                                       */
-  RNG_IRQn                    = 80      /*!< Rng global interrupt                                              */
+   RNG_IRQn                   = 80      /*!< Rng global interrupt                                              */
 } IRQn_Type;
 
 /**

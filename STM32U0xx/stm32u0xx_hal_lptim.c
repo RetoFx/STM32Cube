@@ -3445,7 +3445,7 @@ __weak void HAL_LPTIM_ErrorCallback(LPTIM_HandleTypeDef * const hlptim)
   * @param pCallback pointer to the callback function
   * @retval status
   */
-HAL_StatusTypeDef HAL_LPTIM_RegisterCallback(LPTIM_HandleTypeDef        *hlptim,
+HAL_StatusTypeDef HAL_LPTIM_RegisterCallback(LPTIM_HandleTypeDef * const hlptim,
                                              HAL_LPTIM_CallbackIDTypeDef CallbackID,
                                              pLPTIM_CallbackTypeDef      pCallback)
 {

@@ -324,13 +324,13 @@ void SystemCoreClockUpdate (void)
       }
       break;
     default: /* MSI used as system clock */
-      msirange = (RCC->ICSCR & RCC_ICSCR_MSIRANGE) >> 13U;
+      msirange = (RCC->ICSCR & RCC_ICSCR_MSIRANGE) >> RCC_ICSCR_MSIRANGE_Pos;
       SystemCoreClock = (32768UL * (1UL << (msirange + 1U)));
       break;
   }
   /* Compute HCLK clock frequency --------------------------------------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }

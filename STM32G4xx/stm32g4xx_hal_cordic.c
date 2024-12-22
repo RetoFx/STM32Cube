@@ -164,12 +164,12 @@ static void CORDIC_ReadOutDataIncrementPtr(CORDIC_HandleTypeDef const * const hc
 static void CORDIC_DMAInCplt(DMA_HandleTypeDef * const hdma);
 static void CORDIC_DMAOutCplt(DMA_HandleTypeDef * const hdma);
 static void CORDIC_DMAError(DMA_HandleTypeDef * const hdma);
+
 /**
   * @}
   */
 
 /* Exported functions --------------------------------------------------------*/
-
 /** @defgroup CORDIC_Exported_Functions CORDIC Exported Functions
   * @{
   */

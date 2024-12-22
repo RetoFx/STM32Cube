@@ -923,7 +923,7 @@ HAL_RTCStateTypeDef HAL_RTC_GetState(RTC_HandleTypeDef const * const hrtc);
                                  ((WEEKDAY) == RTC_WEEKDAY_SATURDAY)  || \
                                  ((WEEKDAY) == RTC_WEEKDAY_SUNDAY))
 
-#define IS_RTC_ALARM_DATE_WEEKDAY_DATE(DATE) (((DATE) >0u) && ((DATE) <= 31U))
+#define IS_RTC_ALARM_DATE_WEEKDAY_DATE(DATE) (((DATE) >0U) && ((DATE) <= 31U))
 
 #define IS_RTC_ALARM_DATE_WEEKDAY_WEEKDAY(WEEKDAY) (((WEEKDAY) == RTC_WEEKDAY_MONDAY)    || \
                                                     ((WEEKDAY) == RTC_WEEKDAY_TUESDAY)   || \

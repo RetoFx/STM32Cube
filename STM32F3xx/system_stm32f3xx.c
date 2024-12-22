@@ -107,6 +107,10 @@
                                                 This value can be provided and adapted by the user application. */
 #endif /* HSI_VALUE */
 
+#if !defined (RCC_CFGR_PLLMULL_Pos)
+ #define RCC_CFGR_PLLMULL_Pos     18U
+#endif
+
 /* Note: Following vector table addresses must be defined in line with linker
          configuration. */
 /*!< Uncomment the following line if you need to relocate the vector table
@@ -351,7 +355,7 @@ void SystemCoreClockUpdate (void)
       /* Get PLL clock source and multiplication factor ----------------------*/
       pllmull = RCC->CFGR & RCC_CFGR_PLLMUL;
       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
-      pllmull = ( pllmull >> 18U) + 2U;
+      pllmull = ( pllmull >> RCC_CFGR_PLLMULL_Pos) + 2U;
 
 #if defined (STM32F302xE) || defined (STM32F303xE) || defined (STM32F398xx)
         predivfactor = (RCC->CFGR2 & RCC_CFGR2_PREDIV) + 1U;
@@ -385,7 +389,7 @@ void SystemCoreClockUpdate (void)
   }
   /* Compute HCLK clock frequency ----------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }

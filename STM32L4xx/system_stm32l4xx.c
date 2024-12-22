@@ -261,8 +261,23 @@ void SystemInit(void)
   RCC->CR |= RCC_CR_MSION;
 
   /* Reset CFGR register */
+  /*
   RCC->CFGR = 0x00000000UL;
-
+  */
+  RCC->CFGR = RCC_CFGR_SW_MSI			/*!< MSI oscillator selection as system clock */
+			| RCC_CFGR_SWS_MSI			/*!< MSI oscillator used as system clock */
+			| RCC_CFGR_HPRE_DIV1		/*!< SYSCLK not divided */
+			| RCC_CFGR_PPRE1_DIV1		/*!< HCLK not divided */
+			| RCC_CFGR_PPRE2_DIV1		/*!< HCLK not divided */
+			| (0U * RCC_CFGR_STOPWUCK)	/*!< Wake Up from stop and CSS backup clock selection */
+			| (0U * RCC_CFGR_MCOSEL_0)	/*!< MCO output disabled, no clock on MCO */
+			| (0U * RCC_CFGR_MCOSEL_1)
+			| (0U * RCC_CFGR_MCOSEL_2)
+#if defined(RCC_HSI48_SUPPORT)
+			| (0U * RCC_CFGR_MCOSEL_3)
+#endif			
+			| RCC_CFGR_MCOPRE_DIV1;		/*!< MCO is divided by 1 */
+			
   /* Reset HSEON, CSSON , HSION, and PLLON bits */
   /*
   RCC->CR &= 0xEAF6FFFFUL;
@@ -321,9 +336,27 @@ void SystemInit(void)
   RCC->CR &= 0xFFFBFFFFUL;
   */
   RCC->CR &= ~RCC_CR_HSEBYP;
+  
 
   /* Disable all interrupts */
   RCC->CIER = 0x00000000UL;
+  
+#if 1U	//Set MSI Clock to max 48MHz for Startup and ITM Output
+  if( ((0U * PWR_CR1_VOS_1) | (1U * PWR_CR1_VOS_0)) != (PWR->CR1 & PWR_CR1_VOS) )
+  {
+    /* Core voltage Range 1: 1.2V, >26MHz */
+    PWR->CR1 = (PWR->CR1 & ~PWR_CR1_VOS) | (0U * PWR_CR1_VOS_1) | (1U * PWR_CR1_VOS_0);
+    /* Wait until the VOSF flag is cleared */
+    while(0UL != (PWR->SR2 & PWR_SR2_VOSF))
+    {
+    }
+  }
+  FLASH->ACR = (FLASH->ACR & ~FLASH_ACR_LATENCY) | FLASH_ACR_LATENCY_2WS; /* 32..48MHz: 2WS */
+  
+  RCC->CR |= RCC_CR_MSIRGSEL;
+  RCC->CR = (RCC->CR & ~RCC_CR_MSIRANGE) | RCC_CR_MSIRANGE_11;            /* MSI: 48MHz */
+  SystemCoreClock = 48000000UL;
+#endif  
 
   /* Configure the Debug Feature of the CPU ----------------------------------*/
 #if defined(DBG_CpuInit)
@@ -388,11 +421,11 @@ void SystemCoreClockUpdate(void)
   /* Get MSI Range frequency--------------------------------------------------*/
   if ((RCC->CR & RCC_CR_MSIRGSEL) == 0U)
   { /* MSISRANGE from RCC_CSR applies */
-    msirange = (RCC->CSR & RCC_CSR_MSISRANGE) >> 8U;
+    msirange = (RCC->CSR & RCC_CSR_MSISRANGE) >> RCC_CSR_MSISRANGE_Pos;
   }
   else
   { /* MSIRANGE from RCC_CR applies */
-    msirange = (RCC->CR & RCC_CR_MSIRANGE) >> 4U;
+    msirange = (RCC->CR & RCC_CR_MSIRANGE) >> RCC_CR_MSIRANGE_Pos;
   }
   /*MSI frequency range in HZ*/
   msirange = MSIRangeTable[msirange];
@@ -417,7 +450,7 @@ void SystemCoreClockUpdate(void)
          SYSCLK = PLL_VCO / PLLR
          */
       pllsource = (RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC);
-      pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> 4U) + 1U ;
+      pllm = ((RCC->PLLCFGR & RCC_PLLCFGR_PLLM) >> RCC_PLLCFGR_PLLM_Pos) + 1U ;
 
       switch (pllsource)
       {
@@ -433,8 +466,8 @@ void SystemCoreClockUpdate(void)
           pllvco = (msirange / pllm);
           break;
       }
-      pllvco = pllvco * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 8U);
-      pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 25U) + 1U) * 2U;
+      pllvco = pllvco * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos);
+      pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) + 1U) * 2U;
       SystemCoreClock = pllvco/pllr;
       break;
 
@@ -444,7 +477,7 @@ void SystemCoreClockUpdate(void)
   }
   /* Compute HCLK clock frequency --------------------------------------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }
@@ -463,3 +496,4 @@ void SystemCoreClockUpdate(void)
   */
 
 /*lint -restore*/
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

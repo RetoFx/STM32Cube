@@ -203,8 +203,8 @@ uint32_t tmp_optr;
 #ifdef ENABLE_DBG_SWEN
   tmp_seccr = FLASH->SECR;
   tmp_optr = FLASH->OPTR;
-  if (((tmp_seccr & FLASH_SECR_BOOT_LOCK) == FLASH_SECR_BOOT_LOCK)       
-      && (((tmp_optr & FLASH_OPTR_RDP) != 0xCCU)                         
+  if (((tmp_seccr & FLASH_SECR_BOOT_LOCK) == FLASH_SECR_BOOT_LOCK)
+      && (((tmp_optr & FLASH_OPTR_RDP) != 0xCCU)
       && ((tmp_optr & FLASH_OPTR_RDP) != 0xAAU)))
   {
     FLASH->ACR |= FLASH_ACR_DBG_SWEN;  /* Debug access software enabled to avoid the chip
@@ -276,12 +276,12 @@ void SystemCoreClockUpdate(void)
   if ((RCC->CR & RCC_CR_MSIRGSEL) == 0U)
   {
     /* MSISRANGE from RCC_CSR applies */
-    msirange = (RCC->CSR & RCC_CSR_MSISTBYRG) >> 8U;
+    msirange = (RCC->CSR & RCC_CSR_MSISTBYRG) >> RCC_CSR_MSISTBYRG_Pos;
   }
   else
   {
     /* MSIRANGE from RCC_CR applies */
-    msirange = (RCC->CR & RCC_CR_MSIRANGE) >> 4U;
+    msirange = (RCC->CR & RCC_CR_MSIRANGE) >> RCC_CR_MSIRANGE_Pos;
   }
   /* MSI frequency range in HZ*/
   if (msirange > 11U)
@@ -349,7 +349,7 @@ void SystemCoreClockUpdate(void)
   }
   /* Compute HCLK clock frequency --------------------------------------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U) & 0xFU];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos) & 0xFU];
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }

@@ -47,7 +47,6 @@ extern "C" {
   */
 
 
-
 HAL_StatusTypeDef  HAL_PCDEx_PMAConfig(PCD_HandleTypeDef * const hpcd, uint16_t ep_addr,
                                        uint16_t ep_kind, uint32_t pmaadress);
 

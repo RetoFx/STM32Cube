@@ -44,7 +44,8 @@
               (+++) Configure the DMA handle parameters
               (+++) Configure the DMA Tx or Rx Stream/Channel
               (+++) Associate the initialized hdma_tx(or _rx)  handle to the hspi DMA Tx or Rx handle
-              (+++) Configure the priority and enable the NVIC for the transfer complete interrupt on the DMA Tx or Rx Stream/Channel
+              (+++) Configure the priority and enable the NVIC for the transfer complete interrupt on the DMA Tx
+                    or Rx Stream/Channel
 
       (#) Program the Mode, BidirectionalMode , Data size, Baudrate Prescaler, NSS
           management, Clock polarity and phase, FirstBit and CRC configuration in the hspi Init structure.
@@ -190,7 +191,8 @@
        @note The max SPI frequency depend on SPI data size (4bits, 5bits,..., 8bits,...15bits, 16bits),
              SPI mode(2 Lines fullduplex, 2 lines RxOnly, 1 line TX/RX) and Process mode (Polling, IT, DMA).
        @note
-            (#) TX/RX processes are HAL_SPI_TransmitReceive(), HAL_SPI_TransmitReceive_IT() and HAL_SPI_TransmitReceive_DMA()
+            (#) TX/RX processes are HAL_SPI_TransmitReceive(), HAL_SPI_TransmitReceive_IT() and
+                HAL_SPI_TransmitReceive_DMA()
             (#) RX processes are HAL_SPI_Receive(), HAL_SPI_Receive_IT() and HAL_SPI_Receive_DMA()
             (#) TX processes are HAL_SPI_Transmit(), HAL_SPI_Transmit_IT() and HAL_SPI_Transmit_DMA()
 
@@ -925,7 +927,7 @@ HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef * const hspi, uint8_t const
       }
       else
       {
-        *((__IO uint8_t *)&hspi->Instance->DR) = (*hspi->pTxBuffPtr);
+        *((__IO uint8_t *)&hspi->Instance->DR) = *((uint8_t const *)hspi->pTxBuffPtr);
         hspi->pTxBuffPtr ++;
         hspi->TxXferCount--;
       }
@@ -944,7 +946,7 @@ HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef * const hspi, uint8_t const
         }
         else
         {
-          *((__IO uint8_t *)&hspi->Instance->DR) = (*hspi->pTxBuffPtr);
+          *((__IO uint8_t *)&hspi->Instance->DR) = *((uint8_t const *)hspi->pTxBuffPtr);
           hspi->pTxBuffPtr++;
           hspi->TxXferCount--;
         }
@@ -1247,8 +1249,8 @@ HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef * const hspi, uint8_t * cons
   * @param  Timeout Timeout duration
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef * const hspi, uint8_t const * const pTxData, uint8_t * const pRxData, uint16_t Size,
-                                          uint32_t Timeout)
+HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef * const hspi, uint8_t const * const pTxData, uint8_t * const pRxData,
+                                          uint16_t Size, uint32_t Timeout)
 {
   uint16_t             initial_TxXferCount;
   uint16_t             initial_RxXferCount;
@@ -1283,7 +1285,8 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef * const hspi, uint8_
 #endif /* USE_SPI_CRC */
 
   if (!((tmp_state == HAL_SPI_STATE_READY) ||
-        ((tmp_mode == SPI_MODE_MASTER) && (hspi->Init.Direction == SPI_DIRECTION_2LINES) && (tmp_state == HAL_SPI_STATE_BUSY_RX))))
+        ((tmp_mode == SPI_MODE_MASTER) && (hspi->Init.Direction == SPI_DIRECTION_2LINES) &&
+         (tmp_state == HAL_SPI_STATE_BUSY_RX))))
   {
     return HAL_BUSY;
   }
@@ -1420,7 +1423,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef * const hspi, uint8_
       }
       else
       {
-        *(__IO uint8_t *)&hspi->Instance->DR = (*hspi->pTxBuffPtr);
+        *(__IO uint8_t *)&hspi->Instance->DR = *((uint8_t const *)hspi->pTxBuffPtr);
         hspi->pTxBuffPtr++;
         hspi->TxXferCount--;
 
@@ -1451,7 +1454,7 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef * const hspi, uint8_
         }
         else
         {
-          *(__IO uint8_t *)&hspi->Instance->DR = (*hspi->pTxBuffPtr);
+          *(__IO uint8_t *)&hspi->Instance->DR = *((uint8_t const *)hspi->pTxBuffPtr);
           hspi->pTxBuffPtr++;
           hspi->TxXferCount--;
         }
@@ -1780,7 +1783,8 @@ HAL_StatusTypeDef HAL_SPI_Receive_IT(SPI_HandleTypeDef * const hspi, uint8_t * c
   * @param  Size amount of data to be sent and received
   * @retval HAL status
   */
-HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef * const hspi, uint8_t const * const pTxData, uint8_t * const pRxData, uint16_t Size)
+HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef * const hspi, uint8_t const * const pTxData, uint8_t * const pRxData,
+                                             uint16_t Size)
 {
   uint32_t             tmp_mode;
   HAL_SPI_StateTypeDef tmp_state;
@@ -1793,7 +1797,8 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef * const hspi, uin
   tmp_mode            = hspi->Init.Mode;
 
   if (!((tmp_state == HAL_SPI_STATE_READY) ||
-        ((tmp_mode == SPI_MODE_MASTER) && (hspi->Init.Direction == SPI_DIRECTION_2LINES) && (tmp_state == HAL_SPI_STATE_BUSY_RX))))
+        ((tmp_mode == SPI_MODE_MASTER) && (hspi->Init.Direction == SPI_DIRECTION_2LINES) &&
+         (tmp_state == HAL_SPI_STATE_BUSY_RX))))
   {
     return HAL_BUSY;
   }
@@ -2165,7 +2170,8 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_DMA(SPI_HandleTypeDef * const hspi, ui
   tmp_mode            = hspi->Init.Mode;
 
   if (!((tmp_state == HAL_SPI_STATE_READY) ||
-        ((tmp_mode == SPI_MODE_MASTER) && (hspi->Init.Direction == SPI_DIRECTION_2LINES) && (tmp_state == HAL_SPI_STATE_BUSY_RX))))
+        ((tmp_mode == SPI_MODE_MASTER) && (hspi->Init.Direction == SPI_DIRECTION_2LINES) &&
+         (tmp_state == HAL_SPI_STATE_BUSY_RX))))
   {
     return HAL_BUSY;
   }
@@ -2412,7 +2418,8 @@ HAL_StatusTypeDef HAL_SPI_Abort(SPI_HandleTypeDef * const hspi)
       __HAL_SPI_DISABLE(hspi);
 
       /* Empty the FRLVL fifo */
-      if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT, HAL_GetTick()) != HAL_OK)
+      if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT,
+                                        HAL_GetTick()) != HAL_OK)
       {
         hspi->ErrorCode = HAL_SPI_ERROR_ABORT;
       }
@@ -2445,7 +2452,8 @@ HAL_StatusTypeDef HAL_SPI_Abort(SPI_HandleTypeDef * const hspi)
       }
 
       /* Empty the FRLVL fifo */
-      if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT, HAL_GetTick()) != HAL_OK)
+      if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT,
+                                        HAL_GetTick()) != HAL_OK)
       {
         hspi->ErrorCode = HAL_SPI_ERROR_ABORT;
       }
@@ -2700,9 +2708,11 @@ HAL_StatusTypeDef HAL_SPI_DMAStop(SPI_HandleTypeDef * const hspi)
 {
   HAL_StatusTypeDef errorcode = HAL_OK;
   /* The Lock is not implemented on this API to allow the user application
-     to call the HAL SPI API under callbacks HAL_SPI_TxCpltCallback() or HAL_SPI_RxCpltCallback() or HAL_SPI_TxRxCpltCallback():
+     to call the HAL SPI API under callbacks HAL_SPI_TxCpltCallback() or HAL_SPI_RxCpltCallback() or
+     HAL_SPI_TxRxCpltCallback():
      when calling HAL_DMA_Abort() API the DMA TX/RX Transfer complete interrupt is generated
-     and the correspond call back is executed HAL_SPI_TxCpltCallback() or HAL_SPI_RxCpltCallback() or HAL_SPI_TxRxCpltCallback()
+     and the correspond call back is executed HAL_SPI_TxCpltCallback() or HAL_SPI_RxCpltCallback() or
+     HAL_SPI_TxRxCpltCallback()
      */
 
   /* Abort the SPI DMA tx Stream/Channel  */
@@ -3031,7 +3041,7 @@ uint32_t HAL_SPI_GetError(SPI_HandleTypeDef const * const hspi)
   */
 static void SPI_DMATransmitCplt(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
   uint32_t tickstart;
 
   /* Init tickstart for timeout management*/
@@ -3088,7 +3098,7 @@ static void SPI_DMATransmitCplt(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMAReceiveCplt(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
   uint32_t tickstart;
 #if (USE_SPI_CRC != 0U)
   __IO uint32_t tmpreg = 0U;
@@ -3205,7 +3215,7 @@ static void SPI_DMAReceiveCplt(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMATransmitReceiveCplt(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
   uint32_t tickstart;
 #if (USE_SPI_CRC != 0U)
   __IO uint32_t tmpreg = 0U;
@@ -3243,7 +3253,8 @@ static void SPI_DMATransmitReceiveCplt(DMA_HandleTypeDef * const hdma)
       }
       else
       {
-        if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_HALF_FULL, SPI_DEFAULT_TIMEOUT, tickstart) != HAL_OK)
+        if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_HALF_FULL, SPI_DEFAULT_TIMEOUT,
+                                          tickstart) != HAL_OK)
         {
           /* Error on the CRC reception */
           SET_BIT(hspi->ErrorCode, HAL_SPI_ERROR_CRC);
@@ -3305,7 +3316,7 @@ static void SPI_DMATransmitReceiveCplt(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMAHalfTransmitCplt(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
 
   /* Call user Tx half complete callback */
 #if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
@@ -3323,7 +3334,7 @@ static void SPI_DMAHalfTransmitCplt(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMAHalfReceiveCplt(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
 
   /* Call user Rx half complete callback */
 #if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
@@ -3341,7 +3352,7 @@ static void SPI_DMAHalfReceiveCplt(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMAHalfTransmitReceiveCplt(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
 
   /* Call user TxRx half complete callback */
 #if (USE_HAL_SPI_REGISTER_CALLBACKS == 1U)
@@ -3359,7 +3370,7 @@ static void SPI_DMAHalfTransmitReceiveCplt(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMAError(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
 
   /* Stop the disable DMA transfer on SPI side */
   CLEAR_BIT(hspi->Instance->CR2, SPI_CR2_TXDMAEN | SPI_CR2_RXDMAEN);
@@ -3382,7 +3393,7 @@ static void SPI_DMAError(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMAAbortOnError(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
   hspi->RxXferCount = 0U;
   hspi->TxXferCount = 0U;
 
@@ -3404,7 +3415,7 @@ static void SPI_DMAAbortOnError(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMATxAbortCallback(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
 
   hspi->hdmatx->XferAbortCallback = NULL;
 
@@ -3420,7 +3431,8 @@ static void SPI_DMATxAbortCallback(DMA_HandleTypeDef * const hdma)
   __HAL_SPI_DISABLE(hspi);
 
   /* Empty the FRLVL fifo */
-  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT, HAL_GetTick()) != HAL_OK)
+  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT,
+                                    HAL_GetTick()) != HAL_OK)
   {
     hspi->ErrorCode = HAL_SPI_ERROR_ABORT;
   }
@@ -3470,7 +3482,7 @@ static void SPI_DMATxAbortCallback(DMA_HandleTypeDef * const hdma)
   */
 static void SPI_DMARxAbortCallback(DMA_HandleTypeDef * const hdma)
 {
-  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent); /* Derogation MISRAC2012-Rule-11.5 */
+  SPI_HandleTypeDef * const hspi = (SPI_HandleTypeDef *)(((DMA_HandleTypeDef *)hdma)->Parent);
 
   /* Disable SPI Peripheral */
   __HAL_SPI_DISABLE(hspi);
@@ -3487,7 +3499,8 @@ static void SPI_DMARxAbortCallback(DMA_HandleTypeDef * const hdma)
   }
 
   /* Empty the FRLVL fifo */
-  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT, HAL_GetTick()) != HAL_OK)
+  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT,
+                                    HAL_GetTick()) != HAL_OK)
   {
     hspi->ErrorCode = HAL_SPI_ERROR_ABORT;
   }
@@ -3630,7 +3643,7 @@ static void SPI_2linesTxISR_8BIT(struct __SPI_HandleTypeDef * const hspi)
   /* Transmit data in 8 Bit mode */
   else
   {
-    *(__IO uint8_t *)&hspi->Instance->DR = (*hspi->pTxBuffPtr);
+    *(__IO uint8_t *)&hspi->Instance->DR = *((uint8_t const *)hspi->pTxBuffPtr);
     hspi->pTxBuffPtr++;
     hspi->TxXferCount--;
   }
@@ -3877,7 +3890,7 @@ static void SPI_RxISR_16BIT(struct __SPI_HandleTypeDef * const hspi)
   */
 static void SPI_TxISR_8BIT(struct __SPI_HandleTypeDef * const hspi)
 {
-  *(__IO uint8_t *)&hspi->Instance->DR = (*hspi->pTxBuffPtr);
+  *(__IO uint8_t *)&hspi->Instance->DR = *((uint8_t const *)hspi->pTxBuffPtr);
   hspi->pTxBuffPtr++;
   hspi->TxXferCount--;
 
@@ -4360,7 +4373,8 @@ static void SPI_AbortRx_ISR(SPI_HandleTypeDef * const hspi)
   }
 
   /* Empty the FRLVL fifo */
-  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT, HAL_GetTick()) != HAL_OK)
+  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT,
+                                    HAL_GetTick()) != HAL_OK)
   {
     hspi->ErrorCode = HAL_SPI_ERROR_ABORT;
   }
@@ -4403,7 +4417,8 @@ static void SPI_AbortTx_ISR(SPI_HandleTypeDef * const hspi)
   __HAL_SPI_DISABLE(hspi);
 
   /* Empty the FRLVL fifo */
-  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT, HAL_GetTick()) != HAL_OK)
+  if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT,
+                                    HAL_GetTick()) != HAL_OK)
   {
     hspi->ErrorCode = HAL_SPI_ERROR_ABORT;
   }
@@ -4432,7 +4447,8 @@ static void SPI_AbortTx_ISR(SPI_HandleTypeDef * const hspi)
     }
 
     /* Empty the FRLVL fifo */
-    if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT, HAL_GetTick()) != HAL_OK)
+    if (SPI_WaitFifoStateUntilTimeout(hspi, SPI_FLAG_FRLVL, SPI_FRLVL_EMPTY, SPI_DEFAULT_TIMEOUT,
+                                      HAL_GetTick()) != HAL_OK)
     {
       hspi->ErrorCode = HAL_SPI_ERROR_ABORT;
     }

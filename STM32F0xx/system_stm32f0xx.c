@@ -85,9 +85,13 @@
 #endif /* HSI_VALUE */
 
 #if !defined (HSI48_VALUE)
-#define HSI48_VALUE    ((uint32_t)48000000UL) /*!< Default value of the HSI48 Internal oscillator in Hz.
+#define HSI48_VALUE              48000000UL /*!< Default value of the HSI48 Internal oscillator in Hz.
                                                  This value can be provided and adapted by the user application. */
 #endif /* HSI48_VALUE */
+
+#if !defined (RCC_CFGR_PLLMULL_Pos)
+#define RCC_CFGR_PLLMULL_Pos     18U
+#endif
 /**
   * @}
   */
@@ -211,7 +215,7 @@ void SystemCoreClockUpdate (void)
       /* Get PLL clock source and multiplication factor ----------------------*/
       pllmull = RCC->CFGR & RCC_CFGR_PLLMUL;
       pllsource = RCC->CFGR & RCC_CFGR_PLLSRC;
-      pllmull = ( pllmull >> 18U) + 2U;
+      pllmull = ( pllmull >> RCC_CFGR_PLLMULL_Pos) + 2U;
       predivfactor = (RCC->CFGR2 & RCC_CFGR2_PREDIV) + 1U;
 
       if (pllsource == RCC_CFGR_PLLSRC_HSE_PREDIV)
@@ -247,7 +251,7 @@ void SystemCoreClockUpdate (void)
   }
   /* Compute HCLK clock frequency ----------------*/
   /* Get HCLK prescaler */
-  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4U)];
+  tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> RCC_CFGR_HPRE_Pos)];
   /* HCLK clock frequency */
   SystemCoreClock >>= tmp;
 }

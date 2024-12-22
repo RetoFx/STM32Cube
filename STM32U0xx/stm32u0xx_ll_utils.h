@@ -294,6 +294,7 @@ ErrorStatus LL_PLL_ConfigSystemClock_HSI(LL_UTILS_PLLInitTypeDef const * const U
                                          LL_UTILS_ClkInitTypeDef const * const UTILS_ClkInitStruct);
 ErrorStatus LL_PLL_ConfigSystemClock_HSE(uint32_t HSEBypass, LL_UTILS_PLLInitTypeDef const * const UTILS_PLLInitStruct,
                                          LL_UTILS_ClkInitTypeDef const * const UTILS_ClkInitStruct);
+ErrorStatus LL_SetFlashLatency(uint32_t HCLK_Frequency);
 
 /**
   * @}

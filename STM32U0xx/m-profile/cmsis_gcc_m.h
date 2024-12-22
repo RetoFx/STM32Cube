@@ -717,6 +717,6 @@ __STATIC_FORCEINLINE void __TZ_set_MSPLIM_NS(uint32_t const MainStackPtrLimit)
 
 #endif /* (__ARM_ARCH >= 8U) */
 
-/*@} end of CMSIS_Core_RegAccFunctions */
+/** @} end of CMSIS_Core_RegAccFunctions */
 
 #endif /* __CMSIS_GCC_M_H */

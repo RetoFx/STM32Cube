@@ -5679,14 +5679,10 @@ static void I2C_MasterReceive_BTF(I2C_HandleTypeDef * const hi2c)
       /* Enable Acknowledge */
       SET_BIT(hi2c->Instance->CR1, I2C_CR1_ACK);
     }
-    else if (CurrentXferOptions != I2C_LAST_FRAME_NO_STOP)
+    else
     {
       /* Generate Stop */
       SET_BIT(hi2c->Instance->CR1, I2C_CR1_STOP);
-    }
-    else
-    {
-      /* Do nothing */
     }
 
     /* Read data from DR */

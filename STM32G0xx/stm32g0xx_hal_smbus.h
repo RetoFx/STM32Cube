@@ -709,7 +709,7 @@ HAL_StatusTypeDef HAL_SMBUS_IsDeviceReady(SMBUS_HandleTypeDef * const hsmbus, ui
   */
 /******* Non-Blocking mode: Interrupt */
 HAL_StatusTypeDef HAL_SMBUS_Master_Transmit_IT(SMBUS_HandleTypeDef * const hsmbus, uint16_t DevAddress,
-                                                  uint8_t const * const pData, uint16_t Size, uint32_t XferOptions);
+                                               uint8_t const * const pData, uint16_t Size, uint32_t XferOptions);
 HAL_StatusTypeDef HAL_SMBUS_Master_Receive_IT(SMBUS_HandleTypeDef * const hsmbus, uint16_t DevAddress,
                                               uint8_t * const pData, uint16_t Size, uint32_t XferOptions);
 HAL_StatusTypeDef HAL_SMBUS_Master_Abort_IT(SMBUS_HandleTypeDef * const hsmbus, uint16_t DevAddress);

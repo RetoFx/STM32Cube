@@ -269,7 +269,7 @@
   */
 static void HASH_DMAXferCplt(DMA_HandleTypeDef * const hdma);
 static void HASH_DMAError(DMA_HandleTypeDef * const hdma);
-static void HASH_GetDigest(uint8_t * const pMsgDigest, uint8_t Size);
+static void HASH_GetDigest(uint8_t const * const pMsgDigest, uint8_t Size);
 static HAL_StatusTypeDef HASH_WaitOnFlagUntilTimeout(HASH_HandleTypeDef * const hhash, uint32_t Flag, FlagStatus Status,
                                                      uint32_t Timeout);
 static HAL_StatusTypeDef HASH_WriteData(HASH_HandleTypeDef * const hhash, uint8_t const * const pInBuffer, uint32_t Size);
@@ -1907,7 +1907,7 @@ static HAL_StatusTypeDef HASH_WriteData(HASH_HandleTypeDef * const hhash, uint8_
   * @param  Size message digest size in bytes.
   * @retval None
   */
-static void HASH_GetDigest(uint8_t * const pMsgDigest, uint8_t Size)
+static void HASH_GetDigest(uint8_t const * const pMsgDigest, uint8_t Size)
 {
   uint32_t msgdigest = (uint32_t)pMsgDigest;
 

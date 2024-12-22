@@ -20,7 +20,7 @@
 #define __STM32F4xx_HAL_FLASH_EX_H
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -125,7 +125,7 @@ typedef struct
                                 This parameter can be a value of @ref FLASHEx_Dual_Boot */
 
 #endif /*STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F469xx || STM32F479xx */
-}FLASH_AdvOBProgramInitTypeDef;
+} FLASH_AdvOBProgramInitTypeDef;
 #endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F401xC || STM32F401xE || STM32F410xx || STM32F411xE || STM32F446xx ||
           STM32F469xx || STM32F479xx || STM32F412Zx || STM32F412Vx || STM32F412Rx || STM32F412Cx || STM32F413xx || STM32F423xx */
 /**

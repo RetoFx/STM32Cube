@@ -613,8 +613,8 @@ void HAL_SDADC_MspDeInit(SDADC_HandleTypeDef * const hsdadc);
 
 #if (USE_HAL_SDADC_REGISTER_CALLBACKS == 1U)
 /* Callbacks Register/UnRegister functions  ***********************************/
-HAL_StatusTypeDef HAL_SDADC_RegisterCallback(SDADC_HandleTypeDef * const hsdadc, HAL_SDADC_CallbackIDTypeDef CallbackID, pSDADC_CallbackTypeDef pCallback);
-HAL_StatusTypeDef HAL_SDADC_UnRegisterCallback(SDADC_HandleTypeDef * const hsdadc, HAL_SDADC_CallbackIDTypeDef CallbackID);
+HAL_StatusTypeDef HAL_SDADC_RegisterCallback(SDADC_HandleTypeDef * const sdhadc, HAL_SDADC_CallbackIDTypeDef CallbackID, pSDADC_CallbackTypeDef pCallback);
+HAL_StatusTypeDef HAL_SDADC_UnRegisterCallback(SDADC_HandleTypeDef * const sdhadc, HAL_SDADC_CallbackIDTypeDef CallbackID);
 #endif /* USE_HAL_SDADC_REGISTER_CALLBACKS */
 
 /**

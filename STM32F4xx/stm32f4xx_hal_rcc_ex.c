@@ -615,11 +615,11 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
           /* PLLSAI_VCO Output = PLLSAI_VCO Input * PLLSAIN */
           /* SAI_CLK(first level) = PLLSAI_VCO Output/PLLSAIQ */
-          tmpreg1 = (RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIQ) >> 24U;
-          frequency = (vcoinput * ((RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIN) >> 6U)) / (tmpreg1);
+          tmpreg1 = (RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIQ) >> RCC_PLLSAICFGR_PLLSAIQ_Pos;
+          frequency = (vcoinput * ((RCC->PLLSAICFGR & RCC_PLLSAICFGR_PLLSAIN) >> RCC_PLLSAICFGR_PLLSAIN_Pos)) / (tmpreg1);
 
           /* SAI_CLK_x = SAI_CLK(first level)/PLLSAIDIVQ */
-          tmpreg1 = (((RCC->DCKCFGR & RCC_DCKCFGR_PLLSAIDIVQ) >> 8U) + 1U);
+          tmpreg1 = (((RCC->DCKCFGR & RCC_DCKCFGR_PLLSAIDIVQ) >> RCC_DCKCFGR_PLLSAIDIVQ_Pos) + 1U);
           frequency = frequency / (tmpreg1);
           break;
         }
@@ -641,8 +641,8 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
 
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
           /* SAI_CLK(first level) = PLLI2S_VCO Output/PLLI2SQ */
-          tmpreg1 = (RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SQ) >> 24U;
-          frequency = (vcoinput * ((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U)) / (tmpreg1);
+          tmpreg1 = (RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SQ) >> RCC_PLLI2SCFGR_PLLI2SQ_Pos;
+          frequency = (vcoinput * ((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos)) / (tmpreg1);
 
           /* SAI_CLK_x = SAI_CLK(first level)/PLLI2SDIVQ */
           tmpreg1 = ((RCC->DCKCFGR & RCC_DCKCFGR_PLLI2SDIVQ) + 1U);
@@ -667,8 +667,8 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
 
           /* PLL_VCO Output = PLL_VCO Input * PLLN */
           /* SAI_CLK_x = PLL_VCO Output/PLLR */
-          tmpreg1 = (RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 28U;
-          frequency = (vcoinput * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6U)) / (tmpreg1);
+          tmpreg1 = (RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos;
+          frequency = (vcoinput * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos)) / (tmpreg1);
           break;
         }
         case RCC_DCKCFGR_SAI1SRC: /* External clock is the clock source for SAI*/
@@ -727,9 +727,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U) & (RCC_PLLI2SCFGR_PLLI2SN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos) & (RCC_PLLI2SCFGR_PLLI2SN >> RCC_PLLI2SCFGR_PLLI2SN_Pos)));
           /* I2S_CLK = PLLI2S_VCO Output/PLLI2SR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U) & (RCC_PLLI2SCFGR_PLLI2SR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos) & (RCC_PLLI2SCFGR_PLLI2SR >> RCC_PLLI2SCFGR_PLLI2SR_Pos)));
           break;
         }
         /* Check if I2S clock selection is PLL VCO Output divided by PLLR used as I2S clock */
@@ -749,9 +749,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLL_VCO Output = PLL_VCO Input * PLLN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6U) & (RCC_PLLCFGR_PLLN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos) & (RCC_PLLCFGR_PLLN >> RCC_PLLCFGR_PLLN_Pos)));
           /* I2S_CLK = PLL_VCO Output/PLLR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 28U) & (RCC_PLLCFGR_PLLR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) & (RCC_PLLCFGR_PLLR >> RCC_PLLCFGR_PLLR_Pos)));
           break;
         }
         /* Check if I2S clock selection is HSI or HSE depending from PLL source Clock */
@@ -806,9 +806,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U) & (RCC_PLLI2SCFGR_PLLI2SN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos) & (RCC_PLLI2SCFGR_PLLI2SN >> RCC_PLLI2SCFGR_PLLI2SN_Pos)));
           /* I2S_CLK = PLLI2S_VCO Output/PLLI2SR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U) & (RCC_PLLI2SCFGR_PLLI2SR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos) & (RCC_PLLI2SCFGR_PLLI2SR >> RCC_PLLI2SCFGR_PLLI2SR_Pos)));
           break;
         }
         /* Check if I2S clock selection is PLL VCO Output divided by PLLR used as I2S clock */
@@ -828,9 +828,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLL_VCO Output = PLL_VCO Input * PLLN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6U) & (RCC_PLLCFGR_PLLN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos) & (RCC_PLLCFGR_PLLN >> RCC_PLLCFGR_PLLN_Pos)));
           /* I2S_CLK = PLL_VCO Output/PLLR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 28U) & (RCC_PLLCFGR_PLLR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) & (RCC_PLLCFGR_PLLR >> RCC_PLLCFGR_PLLR_Pos)));
           break;
         }
         /* Check if I2S clock selection is HSI or HSE depending from PLL source Clock */
@@ -1256,9 +1256,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U) & (RCC_PLLI2SCFGR_PLLI2SN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos) & (RCC_PLLI2SCFGR_PLLI2SN >> RCC_PLLI2SCFGR_PLLI2SN_Pos)));
           /* I2S_CLK = PLLI2S_VCO Output/PLLI2SR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U) & (RCC_PLLI2SCFGR_PLLI2SR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos) & (RCC_PLLI2SCFGR_PLLI2SR >> RCC_PLLI2SCFGR_PLLI2SR_Pos)));
           break;
         }
         /* Clock not enabled for I2S*/
@@ -1801,9 +1801,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
             }
           }
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U) & (RCC_PLLI2SCFGR_PLLI2SN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos) & (RCC_PLLI2SCFGR_PLLI2SN >> RCC_PLLI2SCFGR_PLLI2SN_Pos)));
           /* I2S_CLK = PLLI2S_VCO Output/PLLI2SR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U) & (RCC_PLLI2SCFGR_PLLI2SR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos) & (RCC_PLLI2SCFGR_PLLI2SR >> RCC_PLLI2SCFGR_PLLI2SR_Pos)));
           break;
         }
         /* Check if I2S clock selection is PLL VCO Output divided by PLLR used as I2S clock */
@@ -1823,9 +1823,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLL_VCO Output = PLL_VCO Input * PLLN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6U) & (RCC_PLLCFGR_PLLN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos) & (RCC_PLLCFGR_PLLN >> RCC_PLLCFGR_PLLN_Pos)));
           /* I2S_CLK = PLL_VCO Output/PLLR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 28U) & (RCC_PLLCFGR_PLLR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) & (RCC_PLLCFGR_PLLR >> RCC_PLLCFGR_PLLR_Pos)));
           break;
         }
         /* Check if I2S clock selection is HSI or HSE depending from PLL source Clock */
@@ -1887,9 +1887,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
             }
           }
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U) & (RCC_PLLI2SCFGR_PLLI2SN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos) & (RCC_PLLI2SCFGR_PLLI2SN >> RCC_PLLI2SCFGR_PLLI2SN_Pos)));
           /* I2S_CLK = PLLI2S_VCO Output/PLLI2SR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U) & (RCC_PLLI2SCFGR_PLLI2SR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos) & (RCC_PLLI2SCFGR_PLLI2SR >> RCC_PLLI2SCFGR_PLLI2SR_Pos)));
           break;
         }
         /* Check if I2S clock selection is PLL VCO Output divided by PLLR used as I2S clock */
@@ -1909,9 +1909,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLL_VCO Output = PLL_VCO Input * PLLN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6U) & (RCC_PLLCFGR_PLLN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos) & (RCC_PLLCFGR_PLLN >> RCC_PLLCFGR_PLLN_Pos)));
           /* I2S_CLK = PLL_VCO Output/PLLR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 28U) & (RCC_PLLCFGR_PLLR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) & (RCC_PLLCFGR_PLLR >> RCC_PLLCFGR_PLLR_Pos)));
           break;
         }
         /* Check if I2S clock selection is HSI or HSE depending from PLL source Clock */
@@ -2143,9 +2143,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLL_VCO Output = PLL_VCO Input * PLLN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6U) & (RCC_PLLCFGR_PLLN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> RCC_PLLCFGR_PLLN_Pos) & (RCC_PLLCFGR_PLLN >> RCC_PLLCFGR_PLLN_Pos)));
           /* I2S_CLK = PLL_VCO Output/PLLR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> 28U) & (RCC_PLLCFGR_PLLR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >> RCC_PLLCFGR_PLLR_Pos) & (RCC_PLLCFGR_PLLR >> RCC_PLLCFGR_PLLR_Pos)));
           break;
         }
         /* Check if I2S clock selection is HSI or HSE depending from PLL source Clock */
@@ -2512,9 +2512,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U) & (RCC_PLLI2SCFGR_PLLI2SN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos) & (RCC_PLLI2SCFGR_PLLI2SN >> RCC_PLLI2SCFGR_PLLI2SN_Pos)));
           /* I2S_CLK = PLLI2S_VCO Output/PLLI2SR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U) & (RCC_PLLI2SCFGR_PLLI2SR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos) & (RCC_PLLI2SCFGR_PLLI2SR >> RCC_PLLI2SCFGR_PLLI2SR_Pos)));
           break;
         }
         /* Clock not enabled for I2S*/
@@ -2771,9 +2771,9 @@ uint32_t HAL_RCCEx_GetPeriphCLKFreq(uint32_t PeriphClk)
           }
 #endif /* STM32F411xE */
           /* PLLI2S_VCO Output = PLLI2S_VCO Input * PLLI2SN */
-          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> 6U) & (RCC_PLLI2SCFGR_PLLI2SN >> 6U)));
+          vcooutput = (uint32_t)(vcoinput * (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SN) >> RCC_PLLI2SCFGR_PLLI2SN_Pos) & (RCC_PLLI2SCFGR_PLLI2SN >> RCC_PLLI2SCFGR_PLLI2SN_Pos)));
           /* I2S_CLK = PLLI2S_VCO Output/PLLI2SR */
-          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> 28U) & (RCC_PLLI2SCFGR_PLLI2SR >> 28U)));
+          frequency = (uint32_t)(vcooutput / (((RCC->PLLI2SCFGR & RCC_PLLI2SCFGR_PLLI2SR) >> RCC_PLLI2SCFGR_PLLI2SR_Pos) & (RCC_PLLI2SCFGR_PLLI2SR >> RCC_PLLI2SCFGR_PLLI2SR_Pos)));
           break;
         }
         /* Clock not enabled for I2S*/
